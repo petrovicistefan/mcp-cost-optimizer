@@ -1,5 +1,7 @@
 #!/usr/bin/env node
-import { readFile, realpath } from 'node:fs/promises';
+import { open, realpath, stat } from 'node:fs/promises';
+import { constants } from 'node:fs';
+import { StringDecoder } from 'node:string_decoder';
 import { isAbsolute, relative, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { analyzeUsage, compareModels } from './core.js';
@@ -8,10 +10,43 @@ export async function loadJson(path, { jsonl = false, root = process.cwd() } = {
   const file = await realpath(resolve(base, path));
   const rel = relative(base, file);
   if (rel === '..' || rel.startsWith(`..${sep}`) || isAbsolute(rel)) throw new Error('File must be inside the configured root');
-  const buffer = await readFile(file);
-  if (buffer.length > 20 * 1024 * 1024) throw new Error('File exceeds 20 MiB limit');
-  const text = buffer.toString('utf8');
-  return jsonl ? text.split(/\r?\n/).filter(s => s.trim()).map((s,i) => { try { return JSON.parse(s); } catch { throw new Error(`Invalid JSONL at nonempty record ${i + 1}`); } }) : JSON.parse(text);
+  const maxBytes = 20 * 1024 * 1024;
+  const before = await stat(file);
+  if (!before.isFile()) throw new Error('Input must be a regular file');
+  if (before.size > maxBytes) throw new Error('File exceeds 20 MiB limit');
+  // Nonblocking prevents an unexpected FIFO from hanging open on POSIX.
+  const handle = await open(file, constants.O_RDONLY | (constants.O_NOFOLLOW ?? 0) | (constants.O_NONBLOCK ?? 0));
+  try {
+    const opened = await handle.stat();
+    if (!opened.isFile()) throw new Error('Input must be a regular file');
+    if (opened.dev !== before.dev || opened.ino !== before.ino) throw new Error('Input changed during open');
+    if (opened.size > maxBytes) throw new Error('File exceeds 20 MiB limit');
+    const decoder = new StringDecoder('utf8');
+    const chunk = Buffer.alloc(64 * 1024);
+    let total = 0, pending = '', line = 0;
+    const records = [];
+    const parseLine = value => {
+      line++;
+      if (!value.trim()) return;
+      if (records.length >= 100000) throw new Error('JSONL exceeds 100000 records');
+      try { records.push(JSON.parse(value)); } catch { throw new Error(`Invalid JSONL at line ${line}`); }
+    };
+    while (true) {
+      const { bytesRead } = await handle.read(chunk, 0, Math.min(chunk.length, maxBytes - total + 1), null);
+      if (!bytesRead) break;
+      total += bytesRead;
+      if (total > maxBytes) throw new Error('File exceeds 20 MiB limit');
+      pending += decoder.write(chunk.subarray(0, bytesRead));
+      if (jsonl) {
+        let start = 0, end;
+        while ((end = pending.indexOf('\n', start)) !== -1) { parseLine(pending.slice(start, end)); start = end + 1; }
+        pending = pending.slice(start);
+      }
+    }
+    pending += decoder.end();
+    if (jsonl) { parseLine(pending); return records; }
+    return JSON.parse(pending);
+  } finally { await handle.close(); }
 }
 export async function main(args) {
   if (!args.length || args[0] === 'serve') { const { serve } = await import('./server.js'); await serve(); return; }

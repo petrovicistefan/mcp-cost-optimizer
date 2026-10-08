@@ -31,6 +31,11 @@ export function validateRecords(records) {
 function cost(r, rate) {
   return ((r.inputTokens - r.cachedInputTokens) * rate.inputPerMillion + r.cachedInputTokens * (rate.cachedInputPerMillion ?? rate.inputPerMillion) + r.outputTokens * rate.outputPerMillion) / 1e6;
 }
+function addTokens(total, amount) {
+  const next = total + amount;
+  if (!Number.isSafeInteger(next)) throw new Error('Token total exceeds safe integer precision');
+  return next;
+}
 export function estimateCost(record, rates) {
   validateRates(rates);
   const [r] = validateRecords([record]);
@@ -44,13 +49,17 @@ export function analyzeUsage(records, rates) {
   const rows = validateRecords(records);
   const byModel = new Map(), seen = new Set(), unknown = new Set();
   let totalCost = 0, duplicateCost = 0, duplicateRequests = 0, pricedRequests = 0;
+  const totals = { inputTokens: 0, outputTokens: 0, cachedInputTokens: 0 };
   for (const r of rows) {
+    for (const key of Object.keys(totals)) totals[key] = addTokens(totals[key], r[key]);
     if (!own(rates.models, r.model)) { unknown.add(r.model); continue; }
     const c = cost(r, rates.models[r.model]);
     if (!Number.isFinite(c)) throw new Error('Cost overflow');
     pricedRequests++; totalCost += c;
     const group = byModel.get(r.model) ?? { model: r.model, requests: 0, inputTokens: 0, outputTokens: 0, cachedInputTokens: 0, estimatedCost: 0 };
-    group.requests++; group.inputTokens += r.inputTokens; group.outputTokens += r.outputTokens; group.cachedInputTokens += r.cachedInputTokens; group.estimatedCost += c;
+    group.requests++;
+    for (const key of Object.keys(totals)) group[key] = addTokens(group[key], r[key]);
+    group.estimatedCost += c;
     byModel.set(r.model, group);
     if (r.requestHash) {
       const key = JSON.stringify([r.model, r.requestHash]);
@@ -61,7 +70,7 @@ export function analyzeUsage(records, rates) {
   if (!Number.isFinite(totalCost)) throw new Error('Total cost overflow');
   return {
     currency: rates.currency, pricingAsOf: rates.asOf ?? null,
-    requests: rows.length, pricedRequests, unpricedRequests: rows.length - pricedRequests,
+    requests: rows.length, pricedRequests, unpricedRequests: rows.length - pricedRequests, tokenTotals: totals,
     complete: pricedRequests === rows.length, estimatedCost: totalCost,
     unknownModels: [...unknown].sort(), byModel: [...byModel.values()].sort((a,b) => b.estimatedCost - a.estimatedCost),
     responseCaching: { duplicateRequests, upperBoundSavings: duplicateCost, note: 'Upper bound only; requires identical full request, tenant, parameters, tool state and freshness. requestHash must capture these. Not provider prompt caching.' },

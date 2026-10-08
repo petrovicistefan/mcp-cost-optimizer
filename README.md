@@ -55,7 +55,7 @@ Model comparisons keep observed token counts, reset cached tokens to zero and re
 
 ## Privacy and limits
 
-No telemetry, outbound requests, provider credentials or stored usage. MCP tools accept supplied structured data and cannot read files. CLI reads JSON/JSONL under its current directory, resolves symlinks and rejects paths outside that root. Limit: 100,000 records and 20 MiB per CLI file. Use trusted local files; the file-size limit is checked after reading and is not a sandbox for adversarial filesystem races. The tool does not automatically observe other MCP/API calls.
+No telemetry, outbound requests, provider credentials or stored usage. MCP tools accept supplied structured data and cannot read files. CLI reads JSON/JSONL under its current directory, resolves symlinks and rejects paths outside that root. Limit: 100,000 records and 20 MiB per CLI file. Files are checked for regular-file type and size before reading, then read in bounded chunks with a second byte limit. JSONL is parsed incrementally and capped at 100,000 records. Descriptor identity is checked at open; this is defense in depth, not a sandbox against concurrent replacement of ancestor directories. Aggregated token counts reject unsafe integer totals, including records with unknown prices. The tool does not automatically observe other MCP/API calls.
 
 ## Free and Pro
 
