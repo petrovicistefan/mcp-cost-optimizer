@@ -1,6 +1,6 @@
 {
   "name": "mcp-cost-optimizer",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Local-first MCP tools to measure LLM costs and estimate optimization opportunities",
   "mcpName": "io.github.petrovicistefan/mcp-cost-optimizer",
   "type": "module",

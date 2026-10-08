@@ -7,7 +7,7 @@ const record = z.object({ model: z.string().min(1), inputTokens: tokens, outputT
 const rates = z.object({ currency: z.string().regex(/^[A-Z]{3}$/), asOf: z.string().optional(), models: z.record(z.object({ inputPerMillion: z.number().finite().nonnegative(), outputPerMillion: z.number().finite().nonnegative(), cachedInputPerMillion: z.number().finite().nonnegative().optional() })) });
 const annotations = { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false };
 export function createServer() {
-  const server = new McpServer({ name: 'mcp-cost-optimizer', version: '0.1.0' });
+  const server = new McpServer({ name: 'mcp-cost-optimizer', version: '0.1.1' });
   const register = (name, description, inputSchema, fn) => server.registerTool(name, { description, inputSchema, annotations }, async args => {
     try { const result = fn(args); return { content: [{ type: 'text', text: JSON.stringify(result, null, 2) }], structuredContent: result }; }
     catch (e) { return { isError: true, content: [{ type: 'text', text: e.message }] }; }
