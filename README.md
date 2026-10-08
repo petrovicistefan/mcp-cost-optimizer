@@ -77,7 +77,7 @@ Requires `Authorization: Bearer mcp_…`. Usage records and rates stay on the ho
 
 ## Free and Pro
 
-Local analysis stays free. Hosted Pro quotas use the control-plane path above (history, budgets, alerts remain future). The discussed 10 hosted reports/month and EUR 19/month are validation hypotheses. First validation: obtain anonymized usage from an AI team, verify an actionable saving, then ask for a paid hosted pilot.
+Local analysis stays free. Hosted Pro quotas use the control-plane path above (history, budgets, alerts remain future).
 
 ## Roadmap
 
