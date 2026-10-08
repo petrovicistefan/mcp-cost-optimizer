@@ -6,7 +6,13 @@
   "bin": { "mcp-cost-optimizer": "src/index.js" },
   "exports": { ".": "./src/core.js" },
   "files": ["src", "README.md", "LICENSE", "examples"],
-  "scripts": { "test": "node --test test/*.test.js", "test:integration": "node test/mcp.integration.js", "start": "node src/index.js", "check": "node --check src/core.js && node --check src/index.js && node --check src/server.js" },
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "test:integration": "node test/mcp.integration.js",
+    "start": "node src/index.js",
+    "start:hosted": "node --env-file=.env src/hosted.js",
+    "check": "node --check src/core.js && node --check src/index.js && node --check src/server.js && node --check src/control-plane-client.js && node --check src/hosted.js"
+  },
   "engines": { "node": ">=20" },
   "dependencies": { "@modelcontextprotocol/sdk": "^1.26.0", "zod": "^3.25.0" },
   "license": "MIT",

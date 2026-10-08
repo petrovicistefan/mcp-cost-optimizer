@@ -57,9 +57,27 @@ Model comparisons keep observed token counts, reset cached tokens to zero and re
 
 No telemetry, outbound requests, provider credentials or stored usage. MCP tools accept supplied structured data and cannot read files. CLI reads JSON/JSONL under its current directory, resolves symlinks and rejects paths outside that root. Limit: 100,000 records and 20 MiB per CLI file. Files are checked for regular-file type and size before reading, then read in bounded chunks with a second byte limit. JSONL is parsed incrementally and capped at 100,000 records. Descriptor identity is checked at open; this is defense in depth, not a sandbox against concurrent replacement of ancestor directories. Aggregated token counts reject unsafe integer totals, including records with unknown prices. The tool does not automatically observe other MCP/API calls.
 
+## Hosted path (quotas via control plane)
+
+Local MCP/CLI stay free and offline. Quotas apply only on a hosted HTTP process that reserves units on mcp-control-plane before analysis.
+
+```sh
+cp .env.example .env   # set CONTROL_PLANE_URL
+npm run start:hosted   # default 127.0.0.1:3102
+```
+
+| Method | Path | Body |
+| --- | --- | --- |
+| GET | `/health` | Liveness |
+| POST | `/v1/estimate` | `{ "requestId", "record", "rates" }` |
+| POST | `/v1/analyze` | `{ "requestId", "records", "rates" }` |
+| POST | `/v1/compare` | `{ "requestId", "records", "rates", "targetModel" }` |
+
+Requires `Authorization: Bearer mcp_…`. Usage records and rates stay on the hosted host; control-plane sees only `product`, `requestId`, and `units`.
+
 ## Free and Pro
 
-Local analysis stays free. Future hosted Pro: history, budgets, integrations, alerts and team reporting. The discussed 10 hosted reports/month and EUR 19/month are validation hypotheses; no billing, hosted quota or license checks are implemented. First validation: obtain anonymized usage from an AI team, verify an actionable saving, then ask for a paid hosted pilot.
+Local analysis stays free. Hosted Pro quotas use the control-plane path above (history, budgets, alerts remain future). The discussed 10 hosted reports/month and EUR 19/month are validation hypotheses. First validation: obtain anonymized usage from an AI team, verify an actionable saving, then ask for a paid hosted pilot.
 
 ## Roadmap
 
