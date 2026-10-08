@@ -1,0 +1,16 @@
+{
+  "name": "mcp-cost-optimizer",
+  "version": "0.1.0",
+  "description": "Local-first MCP tools to measure LLM costs and estimate optimization opportunities",
+  "type": "module",
+  "bin": { "mcp-cost-optimizer": "src/index.js" },
+  "exports": { ".": "./src/core.js" },
+  "files": ["src", "README.md", "LICENSE", "examples"],
+  "scripts": { "test": "node --test test/*.test.js", "test:integration": "node test/mcp.integration.js", "start": "node src/index.js", "check": "node --check src/core.js && node --check src/index.js && node --check src/server.js" },
+  "engines": { "node": ">=20" },
+  "dependencies": { "@modelcontextprotocol/sdk": "^1.26.0", "zod": "^3.25.0" },
+  "license": "MIT",
+  "repository": { "type": "git", "url": "https://github.com/petrovicistefan/mcp-cost-optimizer.git" },
+  "keywords": ["mcp", "llm", "cost", "optimization", "ai", "tokens"],
+  "author": "Stefan Petrovici"
+}

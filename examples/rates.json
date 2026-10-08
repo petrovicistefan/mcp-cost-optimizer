@@ -1,0 +1,8 @@
+{
+  "currency": "EUR",
+  "asOf": "DEMO ONLY - replace with your verified contract prices",
+  "models": {
+    "demo-premium": { "inputPerMillion": 3, "outputPerMillion": 12, "cachedInputPerMillion": 0.3 },
+    "demo-budget": { "inputPerMillion": 0.3, "outputPerMillion": 1.2 }
+  }
+}
