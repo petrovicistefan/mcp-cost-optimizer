@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { open, realpath, stat } from 'node:fs/promises';
-import { constants } from 'node:fs';
+import { constants, realpathSync } from 'node:fs';
 import { StringDecoder } from 'node:string_decoder';
 import { isAbsolute, relative, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -56,4 +56,4 @@ export async function main(args) {
   const rates = await loadJson(args[2]);
   console.log(JSON.stringify({ report: analyzeUsage(records, rates), ...(args[3] ? { comparison: compareModels(records, rates, args[3]) } : {}) }, null, 2));
 }
-if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) main(process.argv.slice(2)).catch(e => { console.error(e.message); process.exitCode = 1; });
+if (process.argv[1] && realpathSync(resolve(process.argv[1])) === realpathSync(fileURLToPath(import.meta.url))) main(process.argv.slice(2)).catch(e => { console.error(e.message); process.exitCode = 1; });

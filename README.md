@@ -2,6 +2,71 @@
 
 Local-first LLM/API cost analysis for AI agents, developers and teams. MIT licensed. Version 0.1.0 MVP.
 
+## Install in your AI client
+
+Works with any MCP client over stdio; no account or API key needed for the local server.
+
+**Claude Code**
+
+```sh
+claude mcp add cost-optimizer -- npx -y mcp-cost-optimizer
+```
+
+**Codex CLI**
+
+```sh
+codex mcp add cost-optimizer -- npx -y mcp-cost-optimizer
+```
+
+**Claude Desktop, Cursor, Windsurf, Cline, Gemini CLI** — add to the client's MCP config (`claude_desktop_config.json`, `~/.cursor/mcp.json`, `~/.codeium/windsurf/mcp_config.json`, Cline MCP settings, `~/.gemini/settings.json`):
+
+```json
+{
+  "mcpServers": {
+    "cost-optimizer": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-cost-optimizer"
+      ]
+    }
+  }
+}
+```
+
+**VS Code / GitHub Copilot** — `.vscode/mcp.json`:
+
+```json
+{
+  "servers": {
+    "cost-optimizer": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-cost-optimizer"
+      ]
+    }
+  }
+}
+```
+
+**Zed** — `settings.json`:
+
+```json
+{
+  "context_servers": {
+    "cost-optimizer": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-cost-optimizer"
+      ]
+    }
+  }
+}
+```
+
 ## Status
 
 Core calculations and CLI tested. MCP SDK integration test is provided but could not be executed in the authoring environment because npm registry access is blocked. Run the full validation below before publishing. Package is not yet published to npm. No lockfile is included; generate and commit one after installing in your environment, then use `npm ci` in CI.

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.petrovicistefan/mcp-cost-optimizer",
+  "title": "MCP Cost Optimizer",
+  "description": "Local-first LLM cost analysis and model-switch savings estimates for AI agents.",
+  "websiteUrl": "https://github.com/petrovicistefan/mcp-cost-optimizer#readme",
+  "repository": {
+    "url": "https://github.com/petrovicistefan/mcp-cost-optimizer",
+    "source": "github"
+  },
+  "version": "0.1.0",
+  "packages": [
+    {
+      "registryType": "npm",
+      "registryBaseUrl": "https://registry.npmjs.org",
+      "identifier": "mcp-cost-optimizer",
+      "version": "0.1.0",
+      "transport": {
+        "type": "stdio"
+      }
+    }
+  ]
+}

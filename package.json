@@ -2,6 +2,7 @@
   "name": "mcp-cost-optimizer",
   "version": "0.1.0",
   "description": "Local-first MCP tools to measure LLM costs and estimate optimization opportunities",
+  "mcpName": "io.github.petrovicistefan/mcp-cost-optimizer",
   "type": "module",
   "bin": {
     "mcp-cost-optimizer": "src/index.js"
@@ -40,7 +41,14 @@
     "cost",
     "optimization",
     "ai",
-    "tokens"
+    "tokens",
+    "model-context-protocol",
+    "mcp-server",
+    "ai-agents",
+    "claude",
+    "cursor",
+    "codex",
+    "copilot"
   ],
   "author": "Stefan Petrovici",
   "homepage": "https://github.com/petrovicistefan/mcp-cost-optimizer#readme",
