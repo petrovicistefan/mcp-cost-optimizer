@@ -1,0 +1,51 @@
+[
+  {
+    "date": "2026-10-13",
+    "npm": {
+      "downloads24h": 12,
+      "downloads7d": 576,
+      "version": "0.1.1",
+      "publishedAt": "2026-10-08T20:18:10.262Z"
+    },
+    "github": {
+      "stars": 0,
+      "forks": 0,
+      "watchers": 0,
+      "openIssues": 0,
+      "openPullRequests": 0,
+      "contributors": 1,
+      "contributorsMayBeTruncated": false,
+      "recentCommits": [
+        {
+          "sha": "dccb7bca069eefeb84581c33b5d3ee3dec37044a",
+          "date": "2026-10-13T14:44:56Z",
+          "message": "feat(metrics): track daily npm and GitHub adoption"
+        },
+        {
+          "sha": "549072b4cef649cfd4556c183acb9640e04d5976",
+          "date": "2026-10-13T14:44:53Z",
+          "message": "feat(metrics): track daily npm and GitHub adoption"
+        },
+        {
+          "sha": "99809ade4f5767b81847c70a0d2a010b2f2cdd9a",
+          "date": "2026-10-09T11:27:28Z",
+          "message": "Add CHANGELOG"
+        },
+        {
+          "sha": "0f34c628a127f3fef3e8c5c2718c94534b919689",
+          "date": "2026-10-08T20:12:45Z",
+          "message": "chore: bump to 0.1.1"
+        },
+        {
+          "sha": "0d322c954094e38f18049cd6f4e515d70f58f1f8",
+          "date": "2026-10-08T20:07:53Z",
+          "message": "ci: tag-triggered release to npm (trusted publishing) and MCP Registry"
+        }
+      ],
+      "latestRelease": {
+        "tag": "v0.1.1",
+        "publishedAt": "2026-10-08T20:18:35Z"
+      }
+    }
+  }
+]
