@@ -147,3 +147,11 @@ Local analysis stays free. Hosted Pro quotas use the control-plane path above (h
 ## Roadmap
 
 Provider adapters (including cache-write and reasoning token accounting), verified versioned pricing, project budgets, quality-gated model evaluation, hosted reporting. Validate these with real usage before adding automatic optimizations.
+
+---
+
+## ⭐ Support this project
+
+**Found this MCP useful? [Star this repository](https://github.com/petrovicistefan/mcp-cost-optimizer)!**
+
+A GitHub star helps other developers discover the project and lets you save it for later. Thanks for supporting open source!
