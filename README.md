@@ -16,9 +16,13 @@ Find overspending in your AI agent's usage records. Compare the cost of every mo
 
 ### Cursor
 
-[![Add to Cursor](https://img.shields.io/badge/Add_to-Cursor-blue?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDJMMiAxMkwxMiAyMkwyMiAxMkwxMiAyWiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+Cg==)](https://cursor.com/mcp/install?config=eyJtY3BTZXJ2ZXJzIjp7ImNvc3Qtb3B0aW1pemVyIjp7ImNvbW1hbmQiOiJucHgiLCJhcmdzIjpbIi15IiwibWNwLWNvc3Qtb3B0aW1pemVyIl19fX0=)
+[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en/install-mcp?name=cost-optimizer&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIm1jcC1jb3N0LW9wdGltaXplciJdfQ==)
 
-Click the button above to install in Cursor with one click.
+Click the button above to install in Cursor with one click, or use this deeplink:
+
+```
+cursor://anysphere.cursor-deeplink/mcp/install?name=cost-optimizer&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIm1jcC1jb3N0LW9wdGltaXplciJdfQ==
+```
 
 ### Claude Desktop
 
@@ -35,9 +39,7 @@ claude mcp add cost-optimizer -- npx -y mcp-cost-optimizer
 
 ### VS Code
 
-[![Install in VS Code](https://img.shields.io/badge/Install_in-VS_Code-007ACC?style=flat-square&logo=visualstudiocode)](vscode:extension/cursor.cursor-mcp?config=eyJtY3BTZXJ2ZXJzIjp7ImNvc3Qtb3B0aW1pemVyIjp7ImNvbW1hbmQiOiJucHgiLCJhcmdzIjpbIi15IiwibWNwLWNvc3Qtb3B0aW1pemVyIl19fX0=)
-
-Or add to `.vscode/mcp.json`:
+Add to `.vscode/mcp.json`:
 
 ```json
 {
