@@ -8,6 +8,58 @@ Find overspending in your AI agent's usage records. Compare the cost of every mo
 [![npm downloads](https://img.shields.io/npm/dm/mcp-cost-optimizer)](https://www.npmjs.com/package/mcp-cost-optimizer)
 [![CI](https://github.com/petrovicistefan/mcp-cost-optimizer/actions/workflows/ci.yml/badge.svg)](https://github.com/petrovicistefan/mcp-cost-optimizer/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/petrovicistefan/mcp-cost-optimizer/blob/main/LICENSE)
+[![Glama](https://glama.ai/mcp/servers/petrovicistefan/mcp-cost-optimizer/badges/score.svg)](https://glama.ai/mcp/servers/petrovicistefan/mcp-cost-optimizer)
+
+---
+
+## 🚀 Quick Install
+
+### Cursor
+
+[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en/install-mcp?name=cost-optimizer&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIm1jcC1jb3N0LW9wdGltaXplciJdfQ==)
+
+Click the button above to install in Cursor with one click, or use this deeplink:
+
+```
+cursor://anysphere.cursor-deeplink/mcp/install?name=cost-optimizer&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIm1jcC1jb3N0LW9wdGltaXplciJdfQ==
+```
+
+### Claude Code
+
+```bash
+# Quick install
+claude mcp add cost-optimizer -- npx -y mcp-cost-optimizer
+
+# Or via marketplace
+/plugin marketplace add petrovicistefan/mcp-cost-optimizer
+/plugin install mcp-cost-optimizer@mcp-cost-optimizer
+```
+
+### VS Code
+
+[![Install in VS Code](https://img.shields.io/badge/VS_Code-Install-0098FF?logo=visualstudiocode)](https://insiders.vscode.dev/redirect/mcp/install?name=cost-optimizer&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22mcp-cost-optimizer%22%5D%7D)
+
+Or manually add to `.vscode/mcp.json`:
+
+```json
+{
+  "servers": {
+    "cost-optimizer": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "mcp-cost-optimizer"]
+    }
+  }
+}
+```
+
+### Any MCP Client
+
+```bash
+npx -y mcp-cost-optimizer
+```
+
+See [detailed setup instructions](#quickstart) for other clients (Windsurf, Cline, Gemini CLI, Zed, Codex CLI).
 
 ---
 
@@ -110,11 +162,13 @@ A GitHub star helps other developers discover the project and lets you save it f
 
 ---
 
-<!-- TODO: Demo GIF showing cost analysis workflow
-Generate with VHS: https://github.com/charmbracelet/vhs
-vhs docs/demo.tape
-![Demo](docs/demo.gif)
--->
+## Demo
+
+![Cost Analysis Demo](docs/demo.gif)
+
+*Analyzing LLM usage across multiple models with custom pricing rates*
+
+---
 
 ## Why MCP Cost Optimizer?
 
@@ -144,17 +198,21 @@ Once installed, try asking your AI agent:
 
 ---
 
-## MCP Tools
+## Tools
 
-The server exposes three MCP tools:
+The server exposes three MCP tools for cost analysis:
 
-| Tool | Input | Result |
-| --- | --- | --- |
-| `estimate_llm_cost` | `record`, `rates` | Single-request cost estimate with currency and pricing date |
-| `analyze_llm_usage` | `records`, `rates` | Aggregate analysis: total cost, per-model breakdown, unknown models, duplicate request opportunities, token totals |
-| `compare_llm_models` | `records`, `rates`, `targetModel` | Migration scenario: what you'd spend with a different model, keeping the same token counts (requires quality evaluation separately) |
+| Tool | Description | Inputs | Output |
+| --- | --- | --- | --- |
+| `estimate_llm_cost` | Estimate one LLM request from supplied per-million token rates. Input tokens include cached tokens. | `record` (model, tokens), `rates` (pricing) | Single-request cost estimate with currency and pricing date |
+| `analyze_llm_usage` | Analyze normalized LLM usage; report costs, unknown models and conditional response-cache opportunities. No network or file access. | `records` (array, max 100k), `rates` (pricing) | Aggregate analysis: total cost, per-model breakdown, unknown models, duplicate request opportunities, token totals |
+| `compare_llm_models` | Compare a target model with known-price baseline. Scenario only; requires quality evaluation and does not change routing. | `records` (array, max 100k), `rates` (pricing), `targetModel` (string) | Migration scenario: what you'd spend with a different model, keeping the same token counts (requires quality evaluation separately) |
 
-All tools accept structured JSON arguments. Results are returned as both formatted text and structured JSON.
+**All tools:**
+- Accept structured JSON arguments
+- Return formatted text + structured JSON
+- Read-only and idempotent (safe to call repeatedly)
+- No network requests or file access
 
 ---
 
@@ -384,7 +442,11 @@ Before contributing:
 
 ## License
 
-MIT © [Stefan Petrovici](https://github.com/petrovicistefan)
+MIT License - see [LICENSE](LICENSE) file for details.
+
+Copyright © 2026 [Stefan Petrovici](https://github.com/petrovicistefan)
+
+Free to use, modify, and distribute. No warranty provided.
 
 ---
 
