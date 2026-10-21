@@ -39,7 +39,9 @@ claude mcp add cost-optimizer -- npx -y mcp-cost-optimizer
 
 ### VS Code
 
-Add to `.vscode/mcp.json`:
+[![Install in VS Code](https://img.shields.io/badge/VS_Code-Install-0098FF?logo=visualstudiocode)](https://insiders.vscode.dev/redirect/mcp/install?name=cost-optimizer&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22mcp-cost-optimizer%22%5D%7D)
+
+Or manually add to `.vscode/mcp.json`:
 
 ```json
 {
