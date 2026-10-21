@@ -24,15 +24,13 @@ Click the button above to install in Cursor with one click, or use this deeplink
 cursor://anysphere.cursor-deeplink/mcp/install?name=cost-optimizer&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIm1jcC1jb3N0LW9wdGltaXplciJdfQ==
 ```
 
-### Claude Desktop
-
-```bash
-claude mcp add cost-optimizer -- npx -y mcp-cost-optimizer
-```
-
 ### Claude Code
 
 ```bash
+# Quick install
+claude mcp add cost-optimizer -- npx -y mcp-cost-optimizer
+
+# Or via marketplace
 /plugin marketplace add petrovicistefan/mcp-cost-optimizer
 /plugin install mcp-cost-optimizer@mcp-cost-optimizer
 ```
@@ -161,6 +159,14 @@ codex mcp add cost-optimizer -- npx -y mcp-cost-optimizer
 **Found this MCP useful? [Star this repository](https://github.com/petrovicistefan/mcp-cost-optimizer)!**
 
 A GitHub star helps other developers discover the project and lets you save it for later. Thanks for supporting open source!
+
+---
+
+## Demo
+
+![Cost Analysis Demo](docs/demo.gif)
+
+*Analyzing LLM usage across multiple models with custom pricing rates*
 
 ---
 
