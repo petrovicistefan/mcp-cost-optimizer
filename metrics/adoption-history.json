@@ -439,5 +439,54 @@
         "publishedAt": "2026-10-19T11:10:55Z"
       }
     }
+  },
+  {
+    "date": "2026-10-22",
+    "npm": {
+      "downloads24h": 8,
+      "downloads7d": 35,
+      "version": "0.1.2",
+      "publishedAt": "2026-10-19T11:10:41.330Z"
+    },
+    "github": {
+      "stars": 0,
+      "forks": 0,
+      "watchers": 0,
+      "openIssues": 0,
+      "openPullRequests": 0,
+      "contributors": 4,
+      "contributorsMayBeTruncated": false,
+      "recentCommits": [
+        {
+          "sha": "1cee233aa89360dac4bda2d4984b2e078c3498a5",
+          "date": "2026-10-21T12:57:50Z",
+          "message": "chore(metrics): record daily adoption snapshot"
+        },
+        {
+          "sha": "f9b42474578c06b6beeb9d6b34a4d76e0ea6608e",
+          "date": "2026-10-21T07:40:26Z",
+          "message": "Add one-click install support for Cursor, Claude, VS Code and AI directories (#2)"
+        },
+        {
+          "sha": "ecc66cc11228c850d0f3cde7c3f39cd4d808351e",
+          "date": "2026-10-20T12:44:56Z",
+          "message": "chore(metrics): record daily adoption snapshot"
+        },
+        {
+          "sha": "17146bdb96e1c64ceb9537159bb7f62d3eed0c0b",
+          "date": "2026-10-19T14:42:27Z",
+          "message": "chore(metrics): record daily adoption snapshot"
+        },
+        {
+          "sha": "30f308620978aaff3fb6b4c5e9c93eb6af96cf2b",
+          "date": "2026-10-19T11:05:34Z",
+          "message": "docs: rewrite README to optimize for conversions and GitHub stars (v0.1.2)"
+        }
+      ],
+      "latestRelease": {
+        "tag": "v0.1.2",
+        "publishedAt": "2026-10-19T11:10:55Z"
+      }
+    }
   }
 ]
