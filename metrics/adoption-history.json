@@ -586,5 +586,54 @@
         "publishedAt": "2026-10-19T11:10:55Z"
       }
     }
+  },
+  {
+    "date": "2026-10-25",
+    "npm": {
+      "downloads24h": 13,
+      "downloads7d": 45,
+      "version": "0.1.2",
+      "publishedAt": "2026-10-19T11:10:41.330Z"
+    },
+    "github": {
+      "stars": 0,
+      "forks": 0,
+      "watchers": 0,
+      "openIssues": 0,
+      "openPullRequests": 0,
+      "contributors": 4,
+      "contributorsMayBeTruncated": false,
+      "recentCommits": [
+        {
+          "sha": "107b0d176025264e864711e1abe73871d746b964",
+          "date": "2026-10-24T12:02:06Z",
+          "message": "chore(metrics): record daily adoption snapshot"
+        },
+        {
+          "sha": "9aa190587b83ca216177def3bcb4a5d47f686fcc",
+          "date": "2026-10-23T12:38:52Z",
+          "message": "chore(metrics): record daily adoption snapshot"
+        },
+        {
+          "sha": "f69aad4b0273788e9962acb30ad78af41a1ea085",
+          "date": "2026-10-22T12:59:41Z",
+          "message": "chore(metrics): record daily adoption snapshot"
+        },
+        {
+          "sha": "1cee233aa89360dac4bda2d4984b2e078c3498a5",
+          "date": "2026-10-21T12:57:50Z",
+          "message": "chore(metrics): record daily adoption snapshot"
+        },
+        {
+          "sha": "f9b42474578c06b6beeb9d6b34a4d76e0ea6608e",
+          "date": "2026-10-21T07:40:26Z",
+          "message": "Add one-click install support for Cursor, Claude, VS Code and AI directories (#2)"
+        }
+      ],
+      "latestRelease": {
+        "tag": "v0.1.2",
+        "publishedAt": "2026-10-19T11:10:55Z"
+      }
+    }
   }
 ]
