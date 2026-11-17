@@ -21,7 +21,9 @@
     "test:integration": "node test/mcp.integration.js",
     "start": "node src/index.js",
     "start:hosted": "node --env-file=.env src/hosted.js",
-    "check": "node --check src/core.js && node --check src/index.js && node --check src/server.js && node --check src/control-plane-client.js && node --check src/hosted.js"
+    "check": "node --check src/core.js && node --check src/index.js && node --check src/server.js && node --check src/control-plane-client.js && node --check src/hosted.js && node --check src/version.js && node --check scripts/check-rules.mjs",
+    "check:rules": "node scripts/check-rules.mjs",
+    "prepublishOnly": "npm run check && npm run check:rules && npm test && npm run test:integration"
   },
   "engines": {
     "node": ">=20"
