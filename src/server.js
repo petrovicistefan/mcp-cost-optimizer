@@ -2,12 +2,13 @@ import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import { z } from 'zod';
 import { analyzeUsage, estimateCost, compareModels } from './core.js';
+import { VERSION } from './version.js';
 const tokens = z.number().int().nonnegative().max(Number.MAX_SAFE_INTEGER);
 const record = z.object({ model: z.string().min(1), inputTokens: tokens, outputTokens: tokens, cachedInputTokens: tokens.optional(), requestHash: z.string().min(1).max(512).optional() });
 const rates = z.object({ currency: z.string().regex(/^[A-Z]{3}$/), asOf: z.string().optional(), models: z.record(z.object({ inputPerMillion: z.number().finite().nonnegative(), outputPerMillion: z.number().finite().nonnegative(), cachedInputPerMillion: z.number().finite().nonnegative().optional() })) });
 const annotations = { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false };
 export function createServer() {
-  const server = new McpServer({ name: 'mcp-cost-optimizer', version: '0.1.2' });
+  const server = new McpServer({ name: 'mcp-cost-optimizer', version: VERSION });
   const register = (name, description, inputSchema, fn) => server.registerTool(name, { description, inputSchema, annotations }, async args => {
     try { const result = fn(args); return { content: [{ type: 'text', text: JSON.stringify(result, null, 2) }], structuredContent: result }; }
     catch (e) { return { isError: true, content: [{ type: 'text', text: e.message }] }; }
