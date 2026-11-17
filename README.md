@@ -1,14 +1,16 @@
 # MCP Cost Optimizer
 
-**See what your LLM calls cost and how much you'd save by switching models — local MCP server, no API keys.**
+**MCP server for LLM cost analysis: see what your AI API calls cost, compare model pricing, and estimate savings from switching models or caching — local, no API keys.**
 
-Find overspending in your AI agent's usage records. Compare the cost of every model you're considering. Make decisions with real numbers, not guesses.
+Find overspending in your AI agent's usage records (OpenAI, Anthropic and more), compare the cost of every model you're considering, and spot response-cache opportunities from Claude Code, Cursor or any MCP client. Make decisions with real numbers, not guesses.
 
 [![npm version](https://img.shields.io/npm/v/mcp-cost-optimizer)](https://www.npmjs.com/package/mcp-cost-optimizer)
 [![npm downloads](https://img.shields.io/npm/dm/mcp-cost-optimizer)](https://www.npmjs.com/package/mcp-cost-optimizer)
 [![CI](https://github.com/petrovicistefan/mcp-cost-optimizer/actions/workflows/ci.yml/badge.svg)](https://github.com/petrovicistefan/mcp-cost-optimizer/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/petrovicistefan/mcp-cost-optimizer/blob/main/LICENSE)
 [![Glama](https://glama.ai/mcp/servers/petrovicistefan/mcp-cost-optimizer/badges/score.svg)](https://glama.ai/mcp/servers/petrovicistefan/mcp-cost-optimizer)
+
+> **Part of the [petrovicistefan MCP suite](https://github.com/petrovicistefan/mcp-marketplace)** — local-first guardrails for AI coding agents (Claude Code, Cursor, Codex).
 
 ---
 
